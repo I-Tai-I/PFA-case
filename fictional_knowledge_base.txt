@@ -1,0 +1,85 @@
+Company Overview: Northstar Culinary Technologies
+
+Northstar Culinary Technologies is a Danish design and technology company founded in 2017 and headquartered in
+Copenhagen, Denmark. The company specializes in high-quality kitchen gadgets that integrate embedded AI to support
+precision cooking, food preparation, and kitchen workflow optimization. Northstar Culinary Technologies positions itself at
+the intersection of Scandinavian industrial design, advanced sensor technology, and applied artificial intelligence.
+The company employs approximately 140 people across product engineering, industrial design, embedded systems,
+software development, manufacturing operations, and customer support. Its primary markets are the Nordic countries,
+Germany, France, and Japan, with a growing direct-to-consumer presence in North America. Products are sold through a mix
+of premium retail partners and the company’s own online store.
+Northstar Culinary Technologies’ mission is to “make professional-grade cooking accessible without sacrificing
+craftsmanship or control.” Internally, the company emphasizes durability, precision, and user trust. AI features are designed
+to assist rather than automate decision-making, and users are always able to override or disable intelligent features.
+The company is privately held and funded by Danish private investors and a family-owned industrial design group. It has been
+profitable since 2022 and prioritizes long product lifecycles and repairability over rapid product turnover.
+
+
+Product Portfolio
+
+Northstar Culinary Technologies currently produces four flagship kitchen products, each combining physical craftsmanship
+with embedded intelligence.
+
+Aegis Cooktop is a portable induction cooktop designed for precision temperature control. It uses onboard sensors and AI-
+based thermal modeling to maintain stable pan temperatures regardless of pan material or food load. Users can select
+manual mode or guided cooking profiles, such as low-temperature sauces or high-heat searing.
+
+Sentinel Chef Knife is a professional-grade chef’s knife with an integrated grip sensor and inertial measurement unit. When
+paired with the companion app, it provides feedback on cutting technique, consistency, and safety. The knife functions fully
+without digital features; all AI-assisted feedback is optional and processed locally on the paired device.
+
+Orion Smart Scale is a high-precision kitchen scale capable of detecting ingredient type and density using weight patterns
+and optional camera input. It assists with portioning, recipe scaling, and nutritional estimation. All recognition models are
+stored locally on the device or user phone.
+
+Lumen Oven Probe is a wireless temperature probe designed for ovens and grills. It uses predictive modeling to estimate
+remaining cooking time and resting behavior for meats and baked goods. The probe operates independently but integrates
+with the Northstar mobile application ecosystem.
+
+All products are designed to function without cloud connectivity. Cloud services, when enabled, are limited to firmware
+updates, optional recipe synchronization, and anonymized diagnostics.
+
+
+Organizational Structure and Leadership
+
+Northstar Culinary Technologies operates with a product-centric organizational structure.
+The CEO and founder, Anders Holm, is responsible for company vision, brand, and long-term strategy. He has a background
+in industrial design and previously worked in high-end kitchen equipment manufacturing. The CTO, Sofie Lindberg, leads
+embedded systems, AI development, and software architecture, with a strong emphasis on on-device intelligence and
+reliability.
+Product teams are organized around individual devices rather than functional domains. Each product team includes
+industrial designers, mechanical engineers, embedded software engineers, and QA specialists. A central AI platform team
+maintains shared models, tooling, and evaluation standards.
+Manufacturing and supply chain operations are managed internally, with final assembly performed in Denmark and selected
+components sourced from long-term European partners. Customer support and repair services are based in Copenhagen to
+support the company’s focus on longevity and sustainability.
+Major product decisions require joint approval from design, engineering, and compliance leadership.
+
+
+AI, Data, and Ethics Policies
+
+Northstar Culinary Technologies maintains strict internal policies governing the use of AI and data.
+All AI features must default to local, on-device processing. No raw sensor data is transmitted off the device without explicit
+user consent. When cloud features are enabled, data is anonymized and used solely for product improvement, not for
+advertising or resale.
+The company enforces a “human-in-control” principle: AI systems may suggest, guide, or warn, but must not prevent users
+from performing actions. Safety-critical features, such as temperature alerts, are advisory rather than restrictive.
+Model updates undergo extensive validation using real-world cooking scenarios. Any change that materially affects device
+behavior must be documented and communicated to users through release notes.
+Northstar Culinary Technologies does not train generalized models on user data. Personalized features, where present, are
+trained locally and remain bound to the user’s device.
+
+
+Customer Experience and Support
+
+Northstar Culinary Technologies positions customer experience as a core part of its brand.
+Each product includes comprehensive documentation, both physical and digital, explaining not only how to use the device
+but how its intelligent features work. The company avoids opaque terminology and explicitly describes limitations of its AI
+systems.
+Customer support is available during Danish business hours, with multilingual support for key markets. Repair and
+replacement services are designed to favor repair over replacement, and spare parts are made available for at least seven
+years after product release.
+Software updates are optional and reversible. Customers may choose to remain on older firmware versions without losing
+core functionality.
+Feedback from customers is collected through structured surveys and beta programs. While feedback strongly influences
+future designs, the company explicitly avoids feature creep that could compromise simplicity or reliability.

@@ -1,4 +1,4 @@
-Company Overview: Northstar Culinary Technologies
+ÔªøCompany Overview: Northstar Culinary Technologies
 
 Northstar Culinary Technologies is a Danish design and technology company founded in 2017 and headquartered in
 Copenhagen, Denmark. The company specializes in high-quality kitchen gadgets that integrate embedded AI to support
@@ -7,9 +7,9 @@ the intersection of Scandinavian industrial design, advanced sensor technology, 
 The company employs approximately 140 people across product engineering, industrial design, embedded systems,
 software development, manufacturing operations, and customer support. Its primary markets are the Nordic countries,
 Germany, France, and Japan, with a growing direct-to-consumer presence in North America. Products are sold through a mix
-of premium retail partners and the companyís own online store.
-Northstar Culinary Technologiesí mission is to ìmake professional-grade cooking accessible without sacrificing
-craftsmanship or control.î Internally, the company emphasizes durability, precision, and user trust. AI features are designed
+of premium retail partners and the company‚Äôs own online store.
+Northstar Culinary Technologies‚Äô mission is to ‚Äúmake professional-grade cooking accessible without sacrificing
+craftsmanship or control.‚Äù Internally, the company emphasizes durability, precision, and user trust. AI features are designed
 to assist rather than automate decision-making, and users are always able to override or disable intelligent features.
 The company is privately held and funded by Danish private investors and a family-owned industrial design group. It has been
 profitable since 2022 and prioritizes long product lifecycles and repairability over rapid product turnover.
@@ -24,7 +24,7 @@ Aegis Cooktop is a portable induction cooktop designed for precision temperature
 based thermal modeling to maintain stable pan temperatures regardless of pan material or food load. Users can select
 manual mode or guided cooking profiles, such as low-temperature sauces or high-heat searing.
 
-Sentinel Chef Knife is a professional-grade chefís knife with an integrated grip sensor and inertial measurement unit. When
+Sentinel Chef Knife is a professional-grade chef‚Äôs knife with an integrated grip sensor and inertial measurement unit. When
 paired with the companion app, it provides feedback on cutting technique, consistency, and safety. The knife functions fully
 without digital features; all AI-assisted feedback is optional and processed locally on the paired device.
 
@@ -52,7 +52,7 @@ industrial designers, mechanical engineers, embedded software engineers, and QA 
 maintains shared models, tooling, and evaluation standards.
 Manufacturing and supply chain operations are managed internally, with final assembly performed in Denmark and selected
 components sourced from long-term European partners. Customer support and repair services are based in Copenhagen to
-support the companyís focus on longevity and sustainability.
+support the company‚Äôs focus on longevity and sustainability.
 Major product decisions require joint approval from design, engineering, and compliance leadership.
 
 
@@ -62,12 +62,12 @@ Northstar Culinary Technologies maintains strict internal policies governing the
 All AI features must default to local, on-device processing. No raw sensor data is transmitted off the device without explicit
 user consent. When cloud features are enabled, data is anonymized and used solely for product improvement, not for
 advertising or resale.
-The company enforces a ìhuman-in-controlî principle: AI systems may suggest, guide, or warn, but must not prevent users
+The company enforces a ‚Äúhuman-in-control‚Äù principle: AI systems may suggest, guide, or warn, but must not prevent users
 from performing actions. Safety-critical features, such as temperature alerts, are advisory rather than restrictive.
 Model updates undergo extensive validation using real-world cooking scenarios. Any change that materially affects device
 behavior must be documented and communicated to users through release notes.
 Northstar Culinary Technologies does not train generalized models on user data. Personalized features, where present, are
-trained locally and remain bound to the userís device.
+trained locally and remain bound to the user‚Äôs device.
 
 
 Customer Experience and Support

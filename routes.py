@@ -1,8 +1,9 @@
+import os
 from pathlib import Path
 from typing import Optional, List
 
 from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 
 from agent import DomainRestrictedAgent
 from logger import logger
@@ -21,6 +22,17 @@ app = FastAPI(
         "email": "tai.skadegard@gmail.com",
     },
 )
+
+# --------------------------------------------------
+# Environment / API Key
+# --------------------------------------------------
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+if not GOOGLE_API_KEY:
+    raise RuntimeError(
+        "Missing GOOGLE_API_KEY environment variable."
+    )
 
 # --------------------------------------------------
 # Pydantic Models
@@ -44,7 +56,7 @@ class ChatRequest(BaseModel):
         description="Model creativity parameter."
     )
 
-    @validator("question")
+    @field_validator("question")
     def strip_whitespace(cls, v):
         return v.strip()
 
@@ -84,8 +96,7 @@ except Exception as e:
     logger.error("Failed to load knowledge base: %s", str(e))
     KNOWLEDGE_BASE = ""
 
-agent = DomainRestrictedAgent(KNOWLEDGE_BASE)
-
+agent = DomainRestrictedAgent(GOOGLE_API_KEY, KNOWLEDGE_BASE)
 
 # --------------------------------------------------
 # Routes

@@ -22,9 +22,9 @@ class DomainRestrictedAgent:
     }
     """
 
-    def __init__(self, knowledge_base: str):
+    def __init__(self, api_key:str, knowledge_base: str):
         self.knowledge_base = knowledge_base
-        self.client = genai.Client()
+        self.client = genai.Client(api_key=api_key)
 
         self.storage_path = Path(__file__).parent / "chats.json"
 
@@ -144,7 +144,7 @@ class DomainRestrictedAgent:
             # Create chat session
             # TODO: persist chat session in memory, in order to avoid reinitialization on every message. Look into ways to persist chats efficiently.
             chat_session = self.client.chats.create(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash-lite",
                 config=genai.types.GenerateContentConfig(
                     temperature=temperature,
                     system_instruction=system_instruction,

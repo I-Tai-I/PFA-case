@@ -1,4 +1,5 @@
 ﻿import json
+import os
 from pathlib import Path
 from uuid import uuid4
 from typing import Dict, List
@@ -8,10 +9,17 @@ from google import genai
 
 from logger import logger
 
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+if not GOOGLE_API_KEY:
+    raise RuntimeError(
+        "Missing GOOGLE_API_KEY environment variable."
+    )
+
 
 class DomainRestrictedAgent:
     """
-    Domain-restricted chat agent with persistent JSON-based storage.
+    Domain-restricted multi-turn chat agent with persistent JSON-based storage.
 
     Storage format (chats.json):
     {
@@ -22,11 +30,18 @@ class DomainRestrictedAgent:
     }
     """
 
-    def __init__(self, api_key:str, knowledge_base: str):
-        self.knowledge_base = knowledge_base
-        self.client = genai.Client(api_key=api_key)
+    def __init__(self):
+        self.client = genai.Client(api_key=GOOGLE_API_KEY)
 
         self.storage_path = Path(__file__).parent / "chats.json"
+        
+        # Load knowledge base from file
+        knowledge_base_path = Path(__file__).parent / "fictional_knowledge_base.txt"
+        try:
+            self.knowledge_base = knowledge_base_path.read_text(encoding="utf-8")
+        except Exception as e:
+            logger.error("Failed to load knowledge base: %s", str(e))
+            self.knowledge_base = ""
 
         # Ensure storage file exists
         if not self.storage_path.exists():
@@ -90,6 +105,7 @@ class DomainRestrictedAgent:
         """
         Persist updated chat history.
         """
+        # TODO: For scaling considerations, store chats and history more efficiently in sql database, postgres or mssql or similar. For now, we read and write the entire JSON file for simplicity.
         chats = self._load_all_chats()
         chats[chat_id] = history
         self._write_all_chats(chats)
@@ -142,7 +158,7 @@ class DomainRestrictedAgent:
 
         try:
             # Create chat session
-            # TODO: persist chat session in memory, in order to avoid reinitialization on every message. Look into ways to persist chats efficiently.
+            # TODO: persist chat session in memory, in order to avoid reinitialization on every message. Look into ways to persist chats efficiently. Probably miniscule gains in efficiency, when compared to chat response time.
             chat_session = self.client.chats.create(
                 model="gemini-2.5-flash-lite",
                 config=genai.types.GenerateContentConfig(
@@ -170,7 +186,7 @@ class DomainRestrictedAgent:
         # TODO: Handle content better, for example if the model returns multiple parts, or if we want to store metadata about each message. For now we just store the raw text.
         updated_history = history_json + [
             {"role": "user", "content": prompt, "timestamp": promt_timestamp},
-            {"role": "assistant", "content": answer, "timestamp": response_timestamp},
+            {"role": "model", "content": answer, "timestamp": response_timestamp},
         ]
 
         self.save_chat_history(chat_id, updated_history)

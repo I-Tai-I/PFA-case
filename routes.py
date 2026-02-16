@@ -3,6 +3,8 @@ from pathlib import Path
 from typing import Optional, List
 
 from fastapi import FastAPI, HTTPException, status
+from fastapi.responses import FileResponse
+from fastapi.openapi.docs import get_swagger_ui_html, get_redoc_html
 from pydantic import BaseModel, Field, field_validator
 
 from agent import DomainRestrictedAgent
@@ -21,18 +23,8 @@ app = FastAPI(
         "name": "Tai Skadegaard",
         "email": "tai.skadegard@gmail.com",
     },
+    docs_url=None, redoc_url=None,
 )
-
-# --------------------------------------------------
-# Environment / API Key
-# --------------------------------------------------
-
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-
-if not GOOGLE_API_KEY:
-    raise RuntimeError(
-        "Missing GOOGLE_API_KEY environment variable."
-    )
 
 # --------------------------------------------------
 # Pydantic Models
@@ -85,18 +77,10 @@ class ChatHistoryResponse(BaseModel):
 
 
 # --------------------------------------------------
-# Knowledge Base and Agent Loader
+# Agent Loader
 # --------------------------------------------------
 
-KB_PATH = Path(__file__).parent / "fictional_knowledge_base.txt"
-
-try:
-    KNOWLEDGE_BASE = KB_PATH.read_text(encoding="utf-8")
-except Exception as e:
-    logger.error("Failed to load knowledge base: %s", str(e))
-    KNOWLEDGE_BASE = ""
-
-agent = DomainRestrictedAgent(GOOGLE_API_KEY, KNOWLEDGE_BASE)
+agent = DomainRestrictedAgent()
 
 # --------------------------------------------------
 # Routes
@@ -111,6 +95,17 @@ agent = DomainRestrictedAgent(GOOGLE_API_KEY, KNOWLEDGE_BASE)
 def read_root():
     return {"message": "PFA AI Agent API is running"}
 
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse('favicon.ico')
+
+@app.get("/docs", include_in_schema=False)
+def overridden_swagger():
+	return get_swagger_ui_html(openapi_url="/openapi.json", title="PFA case swagger API documentation", swagger_favicon_url="/favicon.ico")
+
+@app.get("/redoc", include_in_schema=False)
+def overridden_redoc():
+	return get_redoc_html(openapi_url="/openapi.json", title="PFA case ReDoc API documentation", redoc_favicon_url="/favicon.ico")
 
 @app.post(
     "/chat",
@@ -118,6 +113,11 @@ def read_root():
     summary="Send a message to the AI agent",
     description="Creates a new chat or continues an existing one.",
     tags=["Chat"],
+    responses={
+        404: {"description": "Chat not found"},
+        500: {"description": "Internal server error"},
+        502: {"description": "AI provider error"}, #TODO: Include gateway timeout, and other 502 reasons, that could arise from infrastructure.
+    },
 )
 def chat(request: ChatRequest):
     """
@@ -174,6 +174,10 @@ def chat(request: ChatRequest):
     summary="Get chat history",
     description="Retrieve full conversation history for a given chat ID.",
     tags=["Chat"],
+    responses={
+        404: {"description": "Chat not found"},
+        500: {"description": "Internal server error"},
+    },
 )
 def get_chat_history(chat_id: str):
     """

@@ -50,7 +50,7 @@ uvicorn routes:app --reload
 
 ```
 
-### Run in docker:
+### Run with docker:
 ``` bash
 
 docker build -t pfa-agent .

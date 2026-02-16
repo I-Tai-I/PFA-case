@@ -25,8 +25,6 @@ Defines the FastAPI application and API endpoints:
 
 Handles request validation, error handling, and OpenAPI documentation.
 
----
-
 ### `agent.py`
 Contains the `DomainRestrictedAgent` class.
 
@@ -37,8 +35,10 @@ Responsibilities:
 
 ## Run the code
 
+Remember to replace `YOUR_KEY_HERE` with your Google AI studio API key that you can find at https://aistudio.google.com/api-keys.
+
 ### Run locally in active virtual environment located in the PFA-case folder:
-´´´ bash
+``` bash
 
 set GOOGLE_API_KEY=YOUR_KEY_HERE
 
@@ -48,16 +48,16 @@ pip install -r requirements.txt
 
 uvicorn routes:app --reload
 
-´´´
+```
 
 ### Run in docker:
-´´´ bash
+``` bash
 
 docker build -t pfa-agent .
 
 docker run -p 8000:8000 -e GOOGLE_API_KEY=YOUR_KEY_HERE pfa-agent
 
-´´´
+```
 
 
 ## Access documentation:
